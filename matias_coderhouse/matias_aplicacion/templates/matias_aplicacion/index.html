@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>{% block title %}Mi sitio Django{% endblock %}</title>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <a href="{% url 'inicio' %}">section</a>
+
+        </ul>
+    </nav>
+    <section>
+        <h1>Este es un listado</h1>
+    </section>
+
+<div>
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>
