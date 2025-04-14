@@ -1,9 +1,14 @@
-
 {% extends 'matias_aplicacion/index.html' %}
 
-{% block title %}Listado de cosas{% endblock %}
+{% block title %}Listado de cursos{% endblock %}
 
 {% block content %}
-    <h1>Este es un listado</h1>
-    <p>Hola.</p>
+  <h1>Listado de Cursos</h1>
+  <ul>
+    {% for curso in cursos %}
+      <li>{{ curso.nombre }} - {{ curso.puntos }}</li>
+    {% empty %}
+      <li>No hay cursos cargados.</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
