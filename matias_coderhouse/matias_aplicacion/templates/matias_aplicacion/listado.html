@@ -1,14 +1,21 @@
-{% extends 'matias_aplicacion/index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% include 'matias_aplicacion/navbar.html' %}
 
-{% block title %}Listado de cursos{% endblock %}
-
-{% block content %}
   <h1>Listado de Cursos</h1>
   <ul>
     {% for curso in cursos %}
-      <li>{{ curso.nombre }} - {{ curso.puntos }}</li>
-    {% empty %}
-      <li>No hay cursos cargados.</li>
+        <li>
+            {{ curso.nombre }} 
+            <a href="{% url 'editar_curso' curso.id %}">Editar</a>
+        </li>
     {% endfor %}
-  </ul>
-{% endblock %}
+    </ul>
+</body>
+</html>
