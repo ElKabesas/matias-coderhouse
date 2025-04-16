@@ -4,7 +4,12 @@ from .forms import CursoForm
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
 
+
+
+def inicio(request):
+    return render(request, 'matias_aplicacion/inicio1.html')
 
 def crear_curso(request):
     if request.method == 'POST':
@@ -33,3 +38,8 @@ class CursoUpdateView(UpdateView):
     fields = ['nombre', 'puntos']  
     template_name = 'matias_aplicacion/editar_curso.html'
     success_url = '/listado/'  
+
+class CursoDeleteView(DeleteView):
+    model = Curso
+    template_name = 'matias_aplicacion/curso_confirm_delete.html'
+    success_url = reverse_lazy('lista_cursos')  # redirige después de eliminar

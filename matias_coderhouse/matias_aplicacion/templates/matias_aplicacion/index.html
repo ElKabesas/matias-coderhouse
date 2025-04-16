@@ -1,15 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}Mi sitio{% endblock %}</title>
 </head>
 <body>
     {% include 'matias_aplicacion/navbar.html' %}
-
-    <h1>{{ object.nombre }}</h1>
-<p>Puntos: {{ object.puntos }}</p>
+    
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
