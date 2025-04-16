@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+{% extends "matias_aplicacion/index.html" %}
+
 
 {% block content %}
   <h1>¿Estás seguro que querés eliminar "{{ object.nombre }}"?</h1>
@@ -6,6 +7,6 @@
   <form method="post">
     {% csrf_token %}
     <button type="submit">Sí, eliminar</button>
-    <a href="{% url 'lista_cursos' %}">Cancelar</a>
+    <a href="{% url 'listado_cursos' %}">Cancelar</a>
   </form>
 {% endblock %}

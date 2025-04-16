@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
+from django.views.generic.edit import UpdateView
 
 
 
@@ -30,8 +31,7 @@ class CursoDetalleView(DetailView):
     template_name = 'matias_aplicacion/index.html' 
 
 
-from django.views.generic.edit import UpdateView
-from .models import Curso
+
 
 class CursoUpdateView(UpdateView):
     model = Curso
@@ -42,4 +42,4 @@ class CursoUpdateView(UpdateView):
 class CursoDeleteView(DeleteView):
     model = Curso
     template_name = 'matias_aplicacion/curso_confirm_delete.html'
-    success_url = reverse_lazy('lista_cursos')  # redirige después de eliminar
+    success_url = reverse_lazy('listado_cursos')  # redirige después de eliminar
