@@ -1,5 +1,8 @@
 from django import forms
 from .models import Curso
+from .models import Avatar
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
 
 class CursoForm(forms.ModelForm):
 
@@ -7,3 +10,16 @@ class CursoForm(forms.ModelForm):
         model = Curso
         fields = ['nombre', 'puntos']
 
+
+
+class CustomUserChangeForm(UserChangeForm):
+    password = None  # Ocultamos el campo de contraseña
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class AvatarForm(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ['imagen']        
