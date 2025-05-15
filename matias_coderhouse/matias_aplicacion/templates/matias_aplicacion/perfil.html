@@ -1,0 +1,18 @@
+{% extends 'matias_aplicacion/index.html' %}
+
+{% block contenido %}
+<h2>Mi Perfil</h2>
+<ul>
+    <li>Nombre de usuario: {{ usuario.username }}</li>
+    <li>Email: {{ usuario.email }}</li>
+    <li>Nombre: {{ usuario.first_name }}</li>
+    <li>Apellido: {{ usuario.last_name }}</li>
+</ul>
+
+{% if avatar %}
+    <p><strong>Avatar:</strong></p>
+    <img src="{{ avatar.imagen.url }}" width="100" alt="Avatar">
+{% endif %}
+
+<a href="{% url 'editar_perfil' %}">Editar perfil</a>
+{% endblock %}

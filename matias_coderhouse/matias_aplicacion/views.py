@@ -10,6 +10,10 @@ from django.views.generic.edit import DeleteView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from .forms import RegistroUsuarioForm
+from django.contrib.auth import login
 
 
 
@@ -37,11 +41,11 @@ class CursoDetalleView(DetailView):
 
 
 
-class CursoUpdateView(UpdateView):
+class CursoUpdateView(LoginRequiredMixin, UpdateView):
     model = Curso
-    fields = ['nombre', 'puntos']  
+    fields = ['nombre', 'puntos']
     template_name = 'matias_aplicacion/editar_curso.html'
-    success_url = '/listado/'  
+    success_url = reverse_lazy('listado_cursos') 
 
 class CursoDeleteView(DeleteView):
     model = Curso
@@ -81,3 +85,23 @@ def agregar_avatar(request):
         form = AvatarForm()
 
     return render(request, 'matias_aplicacion/agregar_avatar.html', {'form': form})
+
+
+def about(request):
+    return render(request, 'matias_aplicacion/about.html')
+
+
+@login_required
+def ver_perfil(request):
+    return render(request, 'matias_aplicacion/perfil.html', {'usuario': request.user})
+
+def registro(request):
+    if request.method == 'POST':
+        form = RegistroUsuarioForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            login(request, usuario)  # Inicia sesión automáticamente
+            return redirect('inicio')
+    else:
+        form = RegistroUsuarioForm()
+    return render(request, 'matias_aplicacion/registro.html', {'form': form})
